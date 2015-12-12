@@ -110,7 +110,7 @@
   [slider addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
   
   
-  if (fabsf(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
+  if (fabs(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
     // 5 & 5s & 5c
     imgView.image = [UIImage imageNamed:@"YWCircle_5"];
     viewColorPickerPositionIndicator.frame = CGRectMake(70, 70, 16, 16);
@@ -119,7 +119,7 @@
     btnPlay.frame = CGRectMake(111, 111, 60, 60);
     slider.frame = CGRectMake(40, 260, 200, 10);
     
-  }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
+  }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
     // 6 & 6s
     imgView.image = [UIImage imageNamed:@"YWCircle_6"];
     viewColorPickerPositionIndicator.frame = CGRectMake(75, 75, 20, 20);
@@ -128,7 +128,7 @@
     btnPlay.frame = CGRectMake(135, 135, 60, 60);
     slider.frame = CGRectMake(50, 310, 225, 10);
     
-  }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
+  }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
     // 6p & 6sp
     imgView.image = [UIImage imageNamed:@"YWCircle_6p"];
     viewColorPickerPositionIndicator.frame = CGRectMake(80, 80, 24, 24);
@@ -254,7 +254,7 @@
        *  从零取到一百，生生的把它凑成了一百
        */
       int cwValue = (int)(touchLocation.y / 2.5) - 2;
-      if (fabsf(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
+      if (fabs(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
         // 4 & 4s
         if (cwValue < 63) {
           cwValue = cwValue + 1;
@@ -262,7 +262,7 @@
           cwValue = (float)(cwValue) / 81 * 100;
         }
       }
-      if (fabsf(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
+      if (fabs(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
         // 5 & 5s & 5c
         if (cwValue < 63) {
           cwValue = cwValue + 1;
@@ -270,7 +270,7 @@
           cwValue = (float)(cwValue) / 81 * 100;
         }
         
-      }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
+      }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
         // 6 & 6s
         if (cwValue < 63) {
           cwValue = cwValue;
@@ -278,7 +278,7 @@
           cwValue += 1;
         }
         
-      }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
+      }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
         // 6p & 6sp
         
         if (cwValue < 63) {
@@ -342,7 +342,7 @@
       
       
       int cwValue = (int)(touchLocation.y / 2.5) - 2;
-      if (fabsf(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
+      if (fabs(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
         // 4 & 4s
         if (cwValue < 63) {
           cwValue = cwValue + 1;
@@ -350,21 +350,21 @@
           cwValue = (float)(cwValue) / 81 * 100;
         }
       }
-      if (fabsf(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
+      if (fabs(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
         // 5 & 5s & 5c
         if (cwValue < 63) {
           cwValue = cwValue + 1;
         }else{
           cwValue = (float)(cwValue) / 81 * 100;
         }
-      }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
+      }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
         // 6 & 6s
         if (cwValue < 63) {
           cwValue = cwValue;
         }else{
           cwValue += 1;
         }
-      }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
+      }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
         // 6p & 6sp
         if (cwValue < 63) {
           cwValue = cwValue;
@@ -436,7 +436,7 @@
        *  从零取到一百，生生的把它凑成了一百
        */
       int cwValue = (int)(touchLocation.y / 2.5) - 2;
-      if (fabsf(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
+      if (fabs(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
         // 4 & 4s
         if (cwValue < 63) {
           cwValue = cwValue + 1;
@@ -444,7 +444,7 @@
           cwValue = (float)(cwValue) / 81 * 100;
         }
       }
-      if (fabsf(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
+      if (fabs(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
         // 5 & 5s & 5c
         if (cwValue < 63) {
           cwValue = cwValue + 1;
@@ -452,7 +452,7 @@
           cwValue = (float)(cwValue) / 81 * 100;
         }
         
-      }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
+      }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
         // 6 & 6s
         if (cwValue < 63) {
           cwValue = cwValue;
@@ -460,7 +460,7 @@
           cwValue += 1;
         }
         
-      }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
+      }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
         // 6p & 6sp
         
         if (cwValue < 63) {

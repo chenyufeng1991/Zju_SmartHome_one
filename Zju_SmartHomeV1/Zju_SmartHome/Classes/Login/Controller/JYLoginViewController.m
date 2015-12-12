@@ -20,7 +20,6 @@
 #import "RESideMenu.h"
 #import "DLLeftSlideMenuViewController.h"
 #import "AppDelegate.h"
-#import "Reachability.h"
 
 @interface JYLoginViewController ()<LoginXibDelegate,UITextFieldDelegate>
 
@@ -72,9 +71,8 @@
 -(void)loginGoGoGo:(NSString *)username and:(NSString *)password
 {
   
-    //连接网络；
     
-    //    //显示一个蒙板
+    //显示一个蒙板
     [MBProgressHUD showMessage:@"正在登录中..."];
     
     AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
@@ -167,9 +165,6 @@
   
   JYRegisterViewController *registerVc=[[JYRegisterViewController alloc]init];
   self.view.window.rootViewController=registerVc;
- 
-  
-  
 }
 
 

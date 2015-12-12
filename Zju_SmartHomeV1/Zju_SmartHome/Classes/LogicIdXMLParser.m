@@ -12,9 +12,11 @@
 @implementation LogicIdXMLParser
 
 
-- (instancetype)initWithXMLString:(NSString*)string {
+- (instancetype)initWithXMLString:(NSString*)string
+{
   
   NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:true];
+    
   LogicIdXMLParser *parser = [[LogicIdXMLParser alloc] initWithData:data];
   parser.delegate = self;
   [parser parse];
@@ -24,10 +26,9 @@
 
 
 //第一个代理方法：
-- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict{
-  
+- (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict
+{
   self.nodeName = elementName;
-  
 }
 
 //第二个代理方法：
@@ -36,19 +37,19 @@
   NSString *str = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
   if (![str  isEqual: @""]) {
     
-    if ([self.nodeName isEqualToString:@"logic_id"]) {
-      
-      
+    if ([self.nodeName isEqualToString:@"logic_id"])
+    {
       self.logicId = str;
-    }else if ([self.nodeName isEqualToString:@"type"]){
+    }
+    else if ([self.nodeName isEqualToString:@"type"])
+    {
       self.deviceType = str;
     }
-      else if([self.nodeName isEqualToString:@"message"])
-      {
+    else if([self.nodeName isEqualToString:@"message"])
+    {
           self.result=str;
-          
           NSLog(@",,,,,,,%@",str);
-      }
+    }
           
   }
   

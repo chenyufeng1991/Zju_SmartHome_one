@@ -13,7 +13,6 @@
 #import "MBProgressHUD+MJ.h"
 #import "DLLampControlDinnerModeViewController.h"
 #import "CYFFurnitureViewController.h"
-
 #import "AppDelegate.h"
 #import "HttpRequest.h"
 
@@ -114,7 +113,7 @@
   
   slider.minimumValue = 0;
   slider.maximumValue = 100;
-  slider.value = 0;
+  slider.value = 100;
   
   [slider setMaximumTrackImage:[UIImage imageNamed:@"lightdarkslider3"] forState:UIControlStateNormal];
   [slider setMinimumTrackImage:[UIImage imageNamed:@"lightdarkslider3"] forState:UIControlStateNormal];
@@ -127,7 +126,7 @@
   [slider addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
     [slider addTarget:self action:@selector(sliderTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
   
-  if (fabsf(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
+  if (fabs(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
     // 5 & 5s & 5c
     imgView.image = [UIImage imageNamed:@"YWCircle_5"];
     viewColorPickerPositionIndicator.frame = CGRectMake(70, 70, 16, 16);
@@ -136,7 +135,7 @@
     btnPlay.frame = CGRectMake(111, 111, 60, 60);
     slider.frame = CGRectMake(40, 260, 200, 10);
     
-  }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
+  }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
     // 6 & 6s
     imgView.image = [UIImage imageNamed:@"YWCircle_6"];
     viewColorPickerPositionIndicator.frame = CGRectMake(75, 75, 20, 20);
@@ -145,7 +144,7 @@
     btnPlay.frame = CGRectMake(135, 135, 60, 60);
     slider.frame = CGRectMake(50, 310, 225, 10);
     
-  }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
+  }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
     // 6p & 6sp
     imgView.image = [UIImage imageNamed:@"YWCircle_6p"];
     viewColorPickerPositionIndicator.frame = CGRectMake(80, 80, 24, 24);
@@ -199,10 +198,17 @@
 //控制RGB灯亮度方法
 -(void)sliderValueChanged
 {
-  int value = (int)self.slider.value;
-   
-    if(fabsf(self.slider.value-self.sliderValueTemp)>5)
+    if(fabsf(self.slider.value-self.sliderValueTemp)>6)
     {
+        if(self.slider.value<6)
+        {
+            self.slider.value=0;
+        }
+        if(self.slider.value>94)
+        {
+            self.slider.value=100;
+        }
+        int value = (int)self.slider.value;
          NSLog(@"哪个被发送请求的啊%d",value);
         self.sliderValueTemp=self.slider.value;
         [HttpRequest sendRGBBrightnessToServer:self.logic_id brightnessValue:[NSString stringWithFormat:@"%f", self.slider.value]
@@ -217,10 +223,6 @@
                                        }];
 
     }
- 
-    
-    
- 
 }
 -(void)sliderTouchUpInside
 {
@@ -236,13 +238,15 @@
   UIView *hitView = nil;
   
   UIImageView *imgView = (UIImageView *)[self.view viewWithTag:10086];
+    
   NSLog(@"%@", NSStringFromCGRect(imgView.frame));
+    
   BOOL pointInRound = [self touchPointInsideCircle:CGPointMake(imgView.frame.size.width / 2, imgView.frame.size.height / 2)
                                          bigRadius:imgView.frame.size.width * 0.48
                                        smallRadius:imgView.frame.size.width * 0.38
                                        targetPoint:point];
-  
-  if (pointInRound) {
+  if (pointInRound)
+  {
     hitView = imgView;
   }
   return hitView;
@@ -255,9 +259,12 @@
 {
   CGFloat dist = sqrtf((point.x - center.x) * (point.x - center.x) +
                        (point.y - center.y) * (point.y - center.y));
-  if (dist >= bigRadius || dist <= smallRadius){
+  if (dist >= bigRadius || dist <= smallRadius)
+  {
     return NO;
-  }else{
+  }
+  else
+  {
     return YES;
   }
 }
@@ -423,6 +430,7 @@
     UITouch *touch = touches.anyObject;
     
     CGPoint touchLocation = [touch locationInView:self.imgView];
+      
     UIColor *positionColor = [self getPixelColorAtLocation:touchLocation];
     const CGFloat *components = CGColorGetComponents(positionColor.CGColor);
     

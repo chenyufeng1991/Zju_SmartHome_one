@@ -29,6 +29,7 @@
 
 @property(nonatomic,assign)int tag;
 @property(nonatomic,assign)int switchTag;
+@property(nonatomic,assign)int sliderValueTemp;
 @end
 
 @implementation DLLampControlRGBModeViewController
@@ -78,7 +79,7 @@
   
   slider.minimumValue = 0;
   slider.maximumValue = 100;
-  slider.value = 30;
+  slider.value = 100;
   
   [slider setMaximumTrackImage:[UIImage imageNamed:@"blackblue"] forState:UIControlStateNormal];
   [slider setMinimumTrackImage:[UIImage imageNamed:@"blackblue"] forState:UIControlStateNormal];
@@ -89,8 +90,9 @@
   
   self.slider = slider;
   [slider addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
+  [slider addTarget:self action:@selector(sliderTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
   
-  if (fabsf(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
+  if (fabs(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
     // 4 & 4s
     //        imgView.image = [UIImage imageNamed:@"circle_5"];
     //        viewColorPickerPositionIndicator.frame = CGRectMake(70, 70, 16, 16);
@@ -98,7 +100,7 @@
     //        viewColorPickerPositionIndicator.layer.borderWidth = 2;
     //        btnPlay.frame = CGRectMake(111, 111, 60, 60);
   }
-  if (fabsf(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
+  if (fabs(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
     // 5 & 5s & 5c
     imgView.image = [UIImage imageNamed:@"RGBCircle_5"];
     viewColorPickerPositionIndicator.frame = CGRectMake(70, 70, 16, 16);
@@ -107,7 +109,7 @@
     btnPlay.frame = CGRectMake(111, 111, 60, 60);
     slider.frame = CGRectMake(40, 260, 200, 10);
     
-  }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
+  }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
     // 6 & 6s
     imgView.image = [UIImage imageNamed:@"RGBCircle_6"];
     viewColorPickerPositionIndicator.frame = CGRectMake(75, 75, 20, 20);
@@ -116,7 +118,7 @@
     btnPlay.frame = CGRectMake(135, 135, 60, 60);
     slider.frame = CGRectMake(50, 310, 225, 10);
     
-  }else if (fabsf(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
+  }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
     // 6p & 6sp
     imgView.image = [UIImage imageNamed:@"RGBCircle_6p"];
     viewColorPickerPositionIndicator.frame = CGRectMake(80, 80, 24, 24);
@@ -127,7 +129,7 @@
     
   }
   
-  if (fabsf(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
+  if (fabs(([[UIScreen mainScreen] bounds].size.height - 480)) < 1) {
     //4 & 4s 的时候特判
     //        imgView.frame = CGRectMake(30.0f, 30.0f, imgView.image.size.width, imgView.image.size.height);
   }else {
@@ -149,26 +151,38 @@
 
 -(void)sliderValueChanged
 {
-  //    NSLog(@"%d", self.slider.value);
-    int value = (int)self.slider.value;
-    if (value % 20 == 0) {
-  [HttpRequest sendRGBBrightnessToServer:self.logic_id brightnessValue:[NSString stringWithFormat:@"%f", self.slider.value]
-                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                   NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                                   NSLog(@"成功: %@", string);
-                                   
-                                   
-                                 }
-                                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                   NSLog(@"失败: %@", error);
-                                   [MBProgressHUD showError:@"请检查网关"];
-                                   
-                                 }];
+    if(fabsf(self.slider.value-self.sliderValueTemp)>6)
+    {
+        if(self.slider.value<=6)
+        {
+            self.slider.value=0;
+        }
+        if(self.slider.value>=94)
+        {
+            self.slider.value=100;
+        }
+        int value = (int)self.slider.value;
+        NSLog(@"哪个被发送请求的啊%d",value);
+        self.sliderValueTemp=self.slider.value;
+        [HttpRequest sendRGBBrightnessToServer:self.logic_id brightnessValue:[NSString stringWithFormat:@"%f", self.slider.value]
+                                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                           
+                                           NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                           NSLog(@"成功: %@", string);
+                                       }
+                                       failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                           NSLog(@"失败: %@", error);
+                                           [MBProgressHUD showError:@"请检查网关"];
+                                       }];
+        
     }
 }
 
-
-
+-(void)sliderTouchUpInside
+{
+    NSLog(@"还原");
+    self.sliderValueTemp=0;
+}
 /**
  *  判断点触位置，如果点触位置在颜色区域内的话，才返回点触的控件为UIImageView *imgView
  *  除此之外，点触位置落在小圆内部或者大圆外部，都返回nil

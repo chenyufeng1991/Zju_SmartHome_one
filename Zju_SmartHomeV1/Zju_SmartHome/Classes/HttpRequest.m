@@ -16,7 +16,8 @@
 @implementation HttpRequest
 
 #pragma mark - 从网关获取逻辑ID的方法
-+ (void)getLogicIdfromMac:(NSString*)macValue success:(void(^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void(^)(AFHTTPRequestOperation * operation, NSError * error))failure{
++(void)getLogicIdfromMac:(NSString*)macValue success:(void(^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void(^)(AFHTTPRequestOperation * operation, NSError * error))failure
+{
   
   //增加这几行代码；
   AFSecurityPolicy *securityPolicy = [[AFSecurityPolicy alloc] init];
@@ -43,7 +44,7 @@
   if (app.isInternalNetworkGate) {
     //内网；
     
-    NSLog(@"内网获取逻辑ID的IP：%@",[[NSString alloc] initWithFormat:@"http://%@/phone/getLogicIdfromMac.php",app.globalInternalIP]);
+//    NSLog(@"内网获取逻辑ID的IP：%@",[[NSString alloc] initWithFormat:@"http://%@/phone/getLogicIdfromMac.php",app.globalInternalIP]);
     
     NSString *url  = [[NSString alloc] initWithFormat:@"http://%@/phone/getLogicIdfromMac.php",app.globalInternalIP];
     
@@ -51,7 +52,7 @@
        parameters:parameters
           success:success
           failure:failure];
-     NSLog(@"使用内网 向网关发送Mac值");
+     //NSLog(@"使用内网 向网关发送Mac值");
   }else{
     //外网；
     //默认使用外网；
@@ -60,8 +61,7 @@
           success:success
           failure:failure];
     
-     NSLog(@"使用外网 向网关发送Mac值");
-    
+     //NSLog(@"使用外网 向网关发送Mac值");
   }
   
 }
@@ -212,7 +212,7 @@
        parameters:parameters
           success:success
           failure:failure];
-    NSLog(@"使用内网控制YW冷暖：%@",[[NSString alloc] initWithFormat:@"http://%@/phone/yw_light.php",app.globalInternalIP]);
+//    NSLog(@"使用内网控制YW冷暖：%@",[[NSString alloc] initWithFormat:@"http://%@/phone/yw_light.php",app.globalInternalIP]);
     
   }else{
     
@@ -222,7 +222,7 @@
           success:success
           failure:failure];
     
-    NSLog(@"使用外网控制YW冷暖");
+//    NSLog(@"使用外网控制YW冷暖");
     
   }
   
@@ -263,7 +263,7 @@
           success:success
           failure:failure];
     
-     NSLog(@"使用内网控制YW亮度：%@",[[NSString alloc] initWithFormat:@"http://%@/phone/yw_light.php",app.globalInternalIP]);
+//     NSLog(@"使用内网控制YW亮度：%@",[[NSString alloc] initWithFormat:@"http://%@/phone/yw_light.php",app.globalInternalIP]);
     
   }else{
     //外网；
@@ -272,7 +272,7 @@
           success:success
           failure:failure];
     
-    NSLog(@"使用外网控制YW亮度");
+    //NSLog(@"使用外网控制YW亮度");
     
   }
   
@@ -366,7 +366,7 @@
           success:success
           failure:failure];
     
-    NSLog(@"使用内网控制RGB颜色：%@",[[NSString alloc] initWithFormat:@"http://%@/phone/color_light.php",app.globalInternalIP]);
+//    NSLog(@"使用内网控制RGB颜色：%@",[[NSString alloc] initWithFormat:@"http://%@/phone/color_light.php",app.globalInternalIP]);
     
   }else{
     
@@ -376,11 +376,14 @@
           success:success
           failure:failure];
     
-    NSLog(@"使用外网控制GRB颜色");
+   // NSLog(@"使用外网控制GRB颜色");
     
   }
   
 }
+
+
+
 
 
 @end

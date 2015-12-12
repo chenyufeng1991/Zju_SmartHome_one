@@ -17,6 +17,7 @@
 @property(nonatomic,copy)NSString *logicId;
 //设备的类型；如40是RGB等；
 @property(nonatomic,copy)NSString *deviceType;
+
 @property(nonatomic,copy)NSString *result;
 
 

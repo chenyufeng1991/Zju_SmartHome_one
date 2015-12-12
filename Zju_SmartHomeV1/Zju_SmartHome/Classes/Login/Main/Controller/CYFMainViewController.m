@@ -39,7 +39,6 @@
   [super viewDidLoad];
   
   
-  
   //设置显示的view
   JYMainView *jyMainView=[JYMainView mainViewXib];
   
@@ -86,8 +85,10 @@
     
     //    NSLog(@"现在全局的IP是：%@",app.globalInternalIP);
     
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    NSLog(@"获取内网返回数据失败：%@",error);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+    //NSLog(@"获取内网返回数据失败：%@",error);
+         [MBProgressHUD showError:@"获取内网地址失败"];
   }];
   
   
@@ -169,27 +170,6 @@
   self.leftBtn.frame=CGRectMake(0, 0, 28, 28);
   [self.leftBtn.layer setCornerRadius:CGRectGetHeight([self.leftBtn bounds]) / 2];
   self.leftBtn.layer.masksToBounds = true;
-  
-  
-  
-  
-  //  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  //
-  //  NSString *isFirstInstall = [defaults valueForKey:@"isFirstInstall"];
-  //  NSLog(@"是否已经安装：%@",isFirstInstall);
-  //
-  //  if (isFirstInstall  == nil) {
-  //    //第一次安装；
-  //    [self.leftBtn setBackgroundImage:[UIImage imageNamed:@"UserPhoto"] forState:UIControlStateNormal];
-  //    NSLog(@"第一次安装");
-  //
-  //  }else{
-  //
-  //    //已经安装；
-  //    [self.leftBtn setBackgroundImage:[[CYFImageStore sharedStore] imageForKey:@"CYFStore"] forState:UIControlStateNormal];
-  //    NSLog(@"不是第一次安装");
-  //  }
-  
   
   [self.leftBtn addTarget:self action:@selector(presentLeftMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
   UIBarButtonItem *leftItem=[[UIBarButtonItem alloc]initWithCustomView:self.leftBtn];
@@ -296,20 +276,20 @@
   NSString *isSettedPhoto = [defaults valueForKey:@"isSettedPhoto"];
   
 
-  NSLog(@"是否已经安装：%@",isFirstInstall);
+  //NSLog(@"是否已经安装：%@",isFirstInstall);
   
   //重新设置头像；
   if (isFirstInstall  == nil || isSettedPhoto == nil) {
     //第一次安装；
     [self.leftBtn setBackgroundImage:[UIImage imageNamed:@"UserPhoto"] forState:UIControlStateNormal];
     [defaults setValue:@"installed" forKey:@"isFirstInstall"];
-    NSLog(@"第一次安装");
+   // NSLog(@"第一次安装");
     
   }else{
     
     //已经安装；
     [self.leftBtn setBackgroundImage:[[CYFImageStore sharedStore] imageForKey:@"CYFStore"] forState:UIControlStateNormal];
-    NSLog(@"不是第一次安装");
+    //NSLog(@"不是第一次安装");
   }
   
   
