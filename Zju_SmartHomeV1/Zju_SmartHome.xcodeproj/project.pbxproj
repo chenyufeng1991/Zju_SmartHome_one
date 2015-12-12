@@ -59,6 +59,8 @@
 		712C524C1C0832900014F9CB /* QRCatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 712C524A1C0832900014F9CB /* QRCatchViewController.m */; };
 		712C524D1C0832900014F9CB /* QRCatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 712C524B1C0832900014F9CB /* QRCatchViewController.xib */; };
 		712C52601C0C29450014F9CB /* InternalGateIPXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 712C525F1C0C29450014F9CB /* InternalGateIPXMLParser.m */; };
+		713BEF5A1C1C2FEF0008762E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713BEF581C1C2FEF0008762E /* PhotoViewController.m */; settings = {ASSET_TAGS = (); }; };
+		713BEF5B1C1C2FEF0008762E /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 713BEF591C1C2FEF0008762E /* PhotoViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		714854F01C127C300001347F /* CYFChangeMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 714854EE1C127C300001347F /* CYFChangeMailViewController.m */; };
 		714854F11C127C300001347F /* CYFChangeMailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 714854EF1C127C300001347F /* CYFChangeMailViewController.xib */; };
 		7174E3A31BEFAEC500170AAA /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 7174E39F1BEFAEC500170AAA /* MBProgressHUD+MJ.m */; };
@@ -211,6 +213,9 @@
 		712C524B1C0832900014F9CB /* QRCatchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QRCatchViewController.xib; sourceTree = "<group>"; };
 		712C525E1C0C29450014F9CB /* InternalGateIPXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternalGateIPXMLParser.h; sourceTree = "<group>"; };
 		712C525F1C0C29450014F9CB /* InternalGateIPXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternalGateIPXMLParser.m; sourceTree = "<group>"; };
+		713BEF571C1C2FEF0008762E /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		713BEF581C1C2FEF0008762E /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		713BEF591C1C2FEF0008762E /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		714854ED1C127C300001347F /* CYFChangeMailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYFChangeMailViewController.h; sourceTree = "<group>"; };
 		714854EE1C127C300001347F /* CYFChangeMailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYFChangeMailViewController.m; sourceTree = "<group>"; };
 		714854EF1C127C300001347F /* CYFChangeMailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYFChangeMailViewController.xib; sourceTree = "<group>"; };
@@ -526,6 +531,16 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		713BEF5C1C1C2FFB0008762E /* 图片取色 */ = {
+			isa = PBXGroup;
+			children = (
+				713BEF571C1C2FEF0008762E /* PhotoViewController.h */,
+				713BEF581C1C2FEF0008762E /* PhotoViewController.m */,
+				713BEF591C1C2FEF0008762E /* PhotoViewController.xib */,
+			);
+			name = "图片取色";
+			sourceTree = "<group>";
+		};
 		7174E39D1BEFAEC500170AAA /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,6 +624,7 @@
 		9D564DAE1BFF673E0062700D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				713BEF5C1C1C2FFB0008762E /* 图片取色 */,
 				6108792C1C145DF900890CC1 /* RGB */,
 				6108792D1C145E1600890CC1 /* YW */,
 				9DFF737C1C09E9F40061EFBF /* temp */,
@@ -923,7 +939,7 @@
 				TargetAttributes = {
 					9D7D5A401BE472D300E1E1EF = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = R5AC98T9N7;
+						DevelopmentTeam = FA2863D27N;
 					};
 					9D7D5A5C1BE472D300E1E1EF = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -986,6 +1002,7 @@
 				610879271C145DDF00890CC1 /* DLLampControlReadingYWModeViewController.xib in Resources */,
 				714854F11C127C300001347F /* CYFChangeMailViewController.xib in Resources */,
 				9D5FF5AB1BE9930B004371E5 /* JYRegister.xib in Resources */,
+				713BEF5B1C1C2FEF0008762E /* PhotoViewController.xib in Resources */,
 				61645BBA1C10827E007462EC /* DLLampControllYWModeViewController.xib in Resources */,
 				610879291C145DDF00890CC1 /* DLLampControlRGBYWModeViewController.xib in Resources */,
 				61963F401C112F0100030299 /* DLLampControlReadingModeViewController.xib in Resources */,
@@ -1066,6 +1083,7 @@
 				61645BBF1C108290007462EC /* ZQSlider.m in Sources */,
 				712C52601C0C29450014F9CB /* InternalGateIPXMLParser.m in Sources */,
 				61645BB71C10827E007462EC /* DLLampControlDinnerModeViewController.m in Sources */,
+				713BEF5A1C1C2FEF0008762E /* PhotoViewController.m in Sources */,
 				9D7D5A521BE472D300E1E1EF /* Zju_SmartHome.xcdatamodeld in Sources */,
 				9D7D5A8A1BE4744000E1E1EF /* JYLoginViewController.m in Sources */,
 				6108792A1C145DDF00890CC1 /* DLLampControlSleepYWModeViewController.m in Sources */,
@@ -1295,7 +1313,7 @@
 				INFOPLIST_FILE = Zju_SmartHome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TooWalker;
+				PRODUCT_BUNDLE_IDENTIFIER = TooWalker01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1316,7 +1334,7 @@
 				INFOPLIST_FILE = Zju_SmartHome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = TooWalker;
+				PRODUCT_BUNDLE_IDENTIFIER = TooWalker01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
