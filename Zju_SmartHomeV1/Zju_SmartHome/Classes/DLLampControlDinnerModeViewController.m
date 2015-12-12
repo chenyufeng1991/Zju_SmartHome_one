@@ -17,8 +17,9 @@
 #import "AppDelegate.h"
 
 #import "HttpRequest.h"
+#import "PhotoViewController.h"
 
-@interface DLLampControlDinnerModeViewController ()
+@interface DLLampControlDinnerModeViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *panelView;
 @property (weak, nonatomic) IBOutlet UILabel *rValue;
 @property (weak, nonatomic) IBOutlet UILabel *gValue;
@@ -34,7 +35,7 @@
 //向右调模式
 @property (weak, nonatomic) IBOutlet UIButton *rightNext;
 //YW
-@property (weak, nonatomic) IBOutlet UIButton *ywAdjust;
+//@property (weak, nonatomic) IBOutlet UIButton *ywAdjust;
 //RGB
 @property (weak, nonatomic) IBOutlet UIButton *rgbAdjust;
 //模式选择
@@ -42,6 +43,10 @@
 @property(nonatomic,assign)int tag;
 @property(nonatomic,assign)int switchTag;
 @property(nonatomic,assign)int sliderValueTemp;
+
+//有关照片取色的属性；
+@property (strong, nonatomic) UIPopoverController *imagePickerPopover;
+@property (nonatomic,strong) UIAlertController *alert;
 @end
 
 @implementation DLLampControlDinnerModeViewController
@@ -660,6 +665,78 @@
   
 }
 
+#pragma mark - 左上角按钮点击，照片取色
+- (IBAction)photoColorButtonPressed:(id)sender {
+
+  NSLog(@"111111111111111211111111111");
+
+  if ([self.imagePickerPopover isPopoverVisible]) {
+    [self.imagePickerPopover dismissPopoverAnimated:YES];
+    self.imagePickerPopover = nil;
+    return;
+  }
+
+  UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+  imagePicker.editing = YES;
+  imagePicker.delegate = self;
+  //这里可以设置是否允许编辑图片；
+  imagePicker.allowsEditing = false;
+
+
+  /**
+   *  应该在这里让用户选择是打开摄像头还是图库；
+   */
+  //初始化提示框；
+  self.alert = [UIAlertController alertControllerWithTitle:@"请选择打开方式" message:nil preferredStyle:  UIAlertControllerStyleActionSheet];
+
+  [self.alert addAction:[UIAlertAction actionWithTitle:@"照相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+
+    //创建UIPopoverController对象前先检查当前设备是不是ipad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+      self.imagePickerPopover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+      self.imagePickerPopover.delegate = self;
+      [self.imagePickerPopover presentPopoverFromBarButtonItem:sender
+                                      permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                      animated:YES];
+    }
+    else{
+
+      //跳到ShowPhoto页面；
+      PhotoViewController *showPhoto = [[PhotoViewController alloc] init];
+      showPhoto.openType = UIImagePickerControllerSourceTypeCamera;//从照相机打开；
+      [self.navigationController pushViewController:showPhoto animated:true];
+    }
+  }]];
+
+  [self.alert addAction:[UIAlertAction actionWithTitle:@"相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+
+    //创建UIPopoverController对象前先检查当前设备是不是ipad
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+      self.imagePickerPopover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+      self.imagePickerPopover.delegate = self;
+      [self.imagePickerPopover presentPopoverFromBarButtonItem:sender
+                                      permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                      animated:YES];
+    }
+    else{
+      //跳到ShowPhoto页面；
+      PhotoViewController *showPhoto = [[PhotoViewController alloc] init];
+      showPhoto.openType = UIImagePickerControllerSourceTypePhotoLibrary;//从图库打开；
+      [self.navigationController pushViewController:showPhoto animated:true];
+    }
+  }]];
+
+  [self.alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    //取消；
+  }]];
+
+  //弹出提示框；
+  [self presentViewController:self.alert animated:true completion:nil];
+}
 
 
 @end
