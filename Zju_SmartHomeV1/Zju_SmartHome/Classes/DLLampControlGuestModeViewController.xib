@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -147,7 +147,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
-                            <state key="normal" backgroundImage="temperture"/>
+                            <state key="normal" backgroundImage="ct_icon_image_pickcolor_press_80"/>
                             <state key="highlighted" backgroundImage="temperature_highlight"/>
                             <connections>
                                 <action selector="photoColorButtonPressed:" destination="-1" eventType="touchUpInside" id="qok-ek-Pws"/>
@@ -188,6 +188,7 @@
     </objects>
     <resources>
         <image name="ct_icon_color_press" width="40" height="40"/>
+        <image name="ct_icon_image_pickcolor_press_80" width="40" height="40"/>
         <image name="ct_icon_leftbutton" width="40" height="40"/>
         <image name="ct_icon_model_press" width="40" height="40"/>
         <image name="ct_icon_model_unpress" width="40" height="40"/>
@@ -195,7 +196,6 @@
         <image name="ct_icon_music_unpress" width="40" height="40"/>
         <image name="ct_icon_rightbutton" width="40" height="40"/>
         <image name="temperature_highlight" width="40" height="40"/>
-        <image name="temperture" width="40" height="40"/>
         <image name="会客" width="164" height="108"/>
     </resources>
 </document>
