@@ -35,6 +35,7 @@
 
 @property(nonatomic,assign)int tag;
 @property(nonatomic,assign)int switchTag;
+@property(nonatomic,assign)int sliderValueTemp;
 @end
 
 @implementation DLLampControllYWModeViewController
@@ -93,7 +94,7 @@
   
   slider.minimumValue = 0;
   slider.maximumValue = 100;
-  slider.value = 30;
+  slider.value = 100;
   
   [slider setMaximumTrackImage:[UIImage imageNamed:@"lightdarkslider3"] forState:UIControlStateNormal];
   [slider setMinimumTrackImage:[UIImage imageNamed:@"lightdarkslider3"] forState:UIControlStateNormal];
@@ -104,7 +105,7 @@
   
   self.slider = slider;
   [slider addTarget:self action:@selector(sliderValueChanged) forControlEvents:UIControlEventValueChanged];
-  
+   [slider addTarget:self action:@selector(sliderTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
   
   if (fabs(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
     // 5 & 5s & 5c
@@ -151,23 +152,39 @@
   [self.panelView addSubview:slider];
 }
 
--(void)sliderValueChanged{
+-(void)sliderValueChanged
+{
   self.LDValue.text = [NSString stringWithFormat:@"%d", (int)self.slider.value ];
+    NSLog(@"＝＝＝%f",self.slider.value);
   //在这里把亮暗值   (int)self.slider.value   传给服务器
-  
-    int value = (int)self.slider.value;
-    if (value % 20 == 0) {
-  [HttpRequest sendYWBrightnessToServer:self.logic_id brightnessValue:[NSString stringWithFormat:@"%d", (int)self.slider.value ] success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    
-    NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-    NSLog(@"YW亮暗返回成功：%@",result);
-    
-    
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    NSLog(@"YW亮暗返回失败：%@",error);
-  }];
+    if(fabsf(self.slider.value-self.sliderValueTemp)>6)
+    {
+        if(self.slider.value<=6)
+        {
+            self.slider.value=0;
+        }
+        if(self.slider.value>=94)
+        {
+            self.slider.value=100;
+        }
+        int value = (int)self.slider.value;
+       
+        [HttpRequest sendYWBrightnessToServer:self.logic_id brightnessValue:[NSString stringWithFormat:@"%d", value ] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            NSLog(@"YW亮暗返回成功：%@",result);
+            
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"YW亮暗返回失败：%@",error);
+            [MBProgressHUD showError:@"请检查网关"];
+        }];
     }
-  
+}
+-(void)sliderTouchUpInside
+{
+    NSLog(@"还原");
+    self.sliderValueTemp=0;
 }
 
 /**
@@ -288,7 +305,7 @@
         NSLog(@"YW冷暖返回成功：%@",result);
         
       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"YW冷暖返回失败：%@",error);
+        [MBProgressHUD showError:@"请检查网关"];
       }];
       
     }
@@ -380,6 +397,7 @@
             
           } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"YW冷暖返回失败：%@",error);
+            [MBProgressHUD showError:@"请检查网关"];
           }];
           
           

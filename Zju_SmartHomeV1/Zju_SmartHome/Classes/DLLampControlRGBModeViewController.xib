@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -139,7 +139,7 @@
                     <rect key="frame" x="19" y="241" width="282" height="282"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IU9-u8-y4M" userLabel="bright">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IU9-u8-y4M" userLabel="bright">
                             <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <animations/>
@@ -170,17 +170,6 @@
                             <state key="normal" backgroundImage="ct_icon_music_unpress"/>
                             <state key="highlighted" backgroundImage="ct_icon_music_press"/>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" id="FGV-vZ-bng">
-                            <rect key="frame" x="35" y="35" width="212" height="212"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bBD-EY-Svz" userLabel="play">
-                            <rect key="frame" x="111" y="111" width="60" height="60"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                            <state key="normal" backgroundImage="ct_icon_buttonbreak-off"/>
-                        </button>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" red="0.058823529411764705" green="0.058823529411764705" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
@@ -193,8 +182,6 @@
         </view>
     </objects>
     <resources>
-        <image name="circle" width="260" height="260"/>
-        <image name="ct_icon_buttonbreak-off" width="52" height="52"/>
         <image name="ct_icon_color_press" width="40" height="40"/>
         <image name="ct_icon_leftbutton" width="40" height="40"/>
         <image name="ct_icon_model_press" width="40" height="40"/>

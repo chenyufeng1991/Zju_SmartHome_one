@@ -127,7 +127,7 @@
   
   if (fabs(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
     // 5 & 5s & 5c
-    imgView.image = [UIImage imageNamed:@"YWCircle_5"];
+    imgView.image = [UIImage imageNamed:@"reading_circle_5"];
     viewColorPickerPositionIndicator.frame = CGRectMake(70, 70, 16, 16);
     viewColorPickerPositionIndicator.layer.cornerRadius = 8;
     viewColorPickerPositionIndicator.layer.borderWidth = 2;
@@ -136,7 +136,7 @@
     
   }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
     // 6 & 6s
-    imgView.image = [UIImage imageNamed:@"YWCircle_6"];
+    imgView.image = [UIImage imageNamed:@"reading_circle_6"];
     viewColorPickerPositionIndicator.frame = CGRectMake(75, 75, 20, 20);
     viewColorPickerPositionIndicator.layer.cornerRadius = 10;
     viewColorPickerPositionIndicator.layer.borderWidth = 2;
@@ -145,7 +145,7 @@
     
   }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
     // 6p & 6sp
-    imgView.image = [UIImage imageNamed:@"YWCircle_6p"];
+    imgView.image = [UIImage imageNamed:@"reading_circle_6p"];
     viewColorPickerPositionIndicator.frame = CGRectMake(80, 80, 24, 24);
     viewColorPickerPositionIndicator.layer.cornerRadius = 12;
     viewColorPickerPositionIndicator.layer.borderWidth = 2;
@@ -199,11 +199,11 @@
 {
     if(fabsf(self.slider.value-self.sliderValueTemp)>6)
     {
-        if(self.slider.value<6)
+        if(self.slider.value<=6)
         {
             self.slider.value=0;
         }
-        if(self.slider.value>94)
+        if(self.slider.value>=94)
         {
             self.slider.value=100;
         }

@@ -206,11 +206,11 @@
 {
     if(fabsf(self.slider.value-self.sliderValueTemp)>6)
     {
-        if(self.slider.value<6)
+        if(self.slider.value<=6)
         {
             self.slider.value=0;
         }
-        if(self.slider.value>94)
+        if(self.slider.value>=94)
         {
             self.slider.value=100;
         }

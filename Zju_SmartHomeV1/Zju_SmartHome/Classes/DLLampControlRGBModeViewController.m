@@ -107,7 +107,7 @@
   }
   if (fabs(([[UIScreen mainScreen] bounds].size.height - 568)) < 1){
     // 5 & 5s & 5c
-    imgView.image = [UIImage imageNamed:@"RGBCircle_5"];
+    imgView.image = [UIImage imageNamed:@"circle_55"];
     viewColorPickerPositionIndicator.frame = CGRectMake(70, 70, 16, 16);
     viewColorPickerPositionIndicator.layer.cornerRadius = 8;
     viewColorPickerPositionIndicator.layer.borderWidth = 2;
@@ -116,7 +116,7 @@
     
   }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 667)) < 1) {
     // 6 & 6s
-    imgView.image = [UIImage imageNamed:@"RGBCircle_6"];
+    imgView.image = [UIImage imageNamed:@"circle_66"];
     viewColorPickerPositionIndicator.frame = CGRectMake(75, 75, 20, 20);
     viewColorPickerPositionIndicator.layer.cornerRadius = 10;
     viewColorPickerPositionIndicator.layer.borderWidth = 2;
@@ -125,7 +125,7 @@
     
   }else if (fabs(([[UIScreen mainScreen] bounds].size.height - 736)) < 1){
     // 6p & 6sp
-    imgView.image = [UIImage imageNamed:@"RGBCircle_6p"];
+    imgView.image = [UIImage imageNamed:@"circle_6pp"];
     viewColorPickerPositionIndicator.frame = CGRectMake(80, 80, 24, 24);
     viewColorPickerPositionIndicator.layer.cornerRadius = 12;
     viewColorPickerPositionIndicator.layer.borderWidth = 2;
@@ -144,7 +144,9 @@
   imgView.userInteractionEnabled = YES;
   _imgView = imgView;
   
-  viewColorPickerPositionIndicator.backgroundColor = [UIColor colorWithRed:0.588 green:0.882 blue:0.380 alpha:1.000];
+//  viewColorPickerPositionIndicator.backgroundColor = [UIColor colorWithRed:0.588 green:0.882 blue:0.380 alpha:1.000];
+    viewColorPickerPositionIndicator.backgroundColor = [UIColor clearColor];
+
   
   [btnPlay setBackgroundImage:[UIImage imageNamed:@"ct_icon_buttonbreak-off"] forState:UIControlStateNormal];
   
