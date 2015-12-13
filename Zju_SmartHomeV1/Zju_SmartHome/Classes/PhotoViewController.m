@@ -9,6 +9,8 @@
 //
 
 #import "PhotoViewController.h"
+#import "HttpRequest.h"
+#import "MBProgressHUD+MJ.h"
 
 @interface PhotoViewController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
 
@@ -68,11 +70,18 @@
   UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
 
   //将照片放入UIImageView对象中；
-  self.imageView.image = image;
+ self.imageView.image = image;
 
- //将图片保存到图库
-  UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+  if (self.openType == UIImagePickerControllerSourceTypeCamera) {
 
+    //将图片保存到图库
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+
+  }else if(self.openType == UIImagePickerControllerSourceTypePhotoLibrary){
+
+    //本身是从图库打开的，就不用保存到图库了；
+
+  }
 
   //判断UIPopoverController对象是否存在
   if (self.imagePickerPopover) {
@@ -108,6 +117,28 @@
     NSString *gValue=[NSString stringWithFormat:@"%d",(int)(components[1]*255)];
     NSString *bValue=[NSString stringWithFormat:@"%d",(int)(components[2]*255)];
     NSLog(@"我看看结果:%@ %@ %@",rValue,gValue,bValue);
+
+  NSString *r = [NSString stringWithFormat:@"%@",[[NSString alloc] initWithFormat:@"%1x",[rValue intValue]]];
+  NSString *g = [NSString stringWithFormat:@"%@",[[NSString alloc] initWithFormat:@"%1x",[gValue intValue]]];
+
+  NSString *b = [NSString stringWithFormat:@"%@",[[NSString alloc] initWithFormat:@"%1x",[bValue intValue]]];
+
+  [HttpRequest sendRGBColorToServer:self.logic_id redValue:r greenValue:g blueValue:b
+                            success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+                              NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                              NSLog(@"成功: %@", string);
+
+
+                            }
+                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+                              NSLog(@"失败: %@", error);
+                              [MBProgressHUD showError:@"请检查网关"];
+
+                            }];
+
+
 }
 
 - (UIColor*) getPixelColorAtLocation:(CGPoint)point

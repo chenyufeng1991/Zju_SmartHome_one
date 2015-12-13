@@ -207,11 +207,11 @@
 {
     if(fabsf(self.slider.value-self.sliderValueTemp)>6)
     {
-        if(self.slider.value<=6)
+        if(self.slider.value<=8)
         {
             self.slider.value=0;
         }
-        if(self.slider.value>=94)
+        if(self.slider.value>=92)
         {
             self.slider.value=100;
         }
@@ -689,6 +689,7 @@
       //跳到ShowPhoto页面；
       PhotoViewController *showPhoto = [[PhotoViewController alloc] init];
       showPhoto.openType = UIImagePickerControllerSourceTypeCamera;//从照相机打开；
+      showPhoto.logic_id = self.logic_id;
       [self.navigationController pushViewController:showPhoto animated:true];
     }
   }]];
@@ -709,6 +710,7 @@
       //跳到ShowPhoto页面；
       PhotoViewController *showPhoto = [[PhotoViewController alloc] init];
       showPhoto.openType = UIImagePickerControllerSourceTypePhotoLibrary;//从图库打开；
+      showPhoto.logic_id = self.logic_id;
       [self.navigationController pushViewController:showPhoto animated:true];
     }
   }]];
